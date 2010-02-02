@@ -35,6 +35,7 @@ my $build = Module::Build->new(
         'WWW::Mechanize'            => '0',
         'Carp'                      => '0',
         'Class::Accessor'           => '0',
+        'Params::Validate'          => '0',
     },
     meta_merge => {
         resources => {
