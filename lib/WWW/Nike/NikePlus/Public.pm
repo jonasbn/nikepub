@@ -6,27 +6,32 @@ use strict;
 use warnings;
 use WWW::Mechanize;
 use Carp qw(croak);
+use Class::Accessor;
+
+use base qw(Class::Accessor);
+__PACKAGE__->mk_accessors(qw(base_url verbose mech userid));
 
 use version; our $VERSION = qv('0.0.1');
 
 sub new {
     my ( $class, $param ) = @_;
 
-    my $mech;
     my $agent = __PACKAGE__ . "-$VERSION";
+    
+    my $self = bless {}, $class;
+    
     if ( $param->{mech} ) {
-        $mech = $param->{mech};
+        $self->mech($param->{mech});
     } else {
-        $mech = WWW::Mechanize->new( agent => $agent );
+        $self->mech(WWW::Mechanize->new( agent => $agent ));
     }
 
-    my $self = bless {
-        base_url =>
-            'http://nikerunning.nike.com/nikeplus/v1/services/widget/get_public_run_list.jsp?userID=',
-        verbose => $param->{verbose} || 0,
-        mech    => $mech,
-        userid  => $param->{userid},
-    }, $class;
+    $self->base_url(
+        'http://nikerunning.nike.com/nikeplus/v1/services/widget/get_public_run_list.jsp?userID='
+    );
+    
+    $self->verbose($param->{verbose} || 0);
+    $self->userid($param->{userid});
 
     return $self;
 }
@@ -34,15 +39,15 @@ sub new {
 sub retrieve {
     my ( $self, $param ) = @_;
 
-    my $url = $self->{base_url};
+    my $url = $self->base_url;
     if ( $param->{userid} ) {
-        $url = $self->{base_url} . $param->{userid};
+        $url = $self->base_url . $param->{userid};
     }
 
-    $self->{mech}->get($url)
+    $self->mech->get($url)
         or croak "Unable to retrieve base URL: $@";
 
-    my $content = $self->{mech}->content();
+    my $content = $self->mech->content();
 
     return $self->processor( \$content );
 }
@@ -50,7 +55,7 @@ sub retrieve {
 sub processor {
     my ( $self, $content ) = @_;
 
-    if ( $self->{verbose} ) {
+    if ( $self->verbose ) {
         print STDERR "Content: \n${$content}.\n";
     }
 

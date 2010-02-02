@@ -22,7 +22,8 @@ my $build = Module::Build->new(
         'Env'                       => '0',
     },
     requires => {
-        'Test::More'                => '0', 
+        'Test::More'                => '0',
+        'version'                   => '0',
         'File::Slurp'               => '0',
         'Test::Exception'           => '0',
         'Test::MockObject::Extends' => '0',
@@ -30,9 +31,10 @@ my $build = Module::Build->new(
         'Test::Prereq::Build'       => '0',
         'Env'                       => '0',
         'Module::Build'             => '0.30',
-        'Data::Dumper'           => '0',    #Debugging
-        'WWW::Mechanize'         => '0',
-        'Carp'                   => '0',
+        'Data::Dumper'              => '0',    #Debugging
+        'WWW::Mechanize'            => '0',
+        'Carp'                      => '0',
+        'Class::Accessor'           => '0',
     },
     meta_merge => {
         resources => {
