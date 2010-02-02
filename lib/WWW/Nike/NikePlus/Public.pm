@@ -7,7 +7,7 @@ use warnings;
 use WWW::Mechanize;
 use Carp qw(croak);
 
-our $VERSION = '0.01';
+use version; our $VERSION = qv('0.0.1');
 
 sub new {
     my ( $class, $param ) = @_;
