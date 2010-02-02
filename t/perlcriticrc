@@ -18,8 +18,6 @@ keywords = Id
 [CodeLayout::ProhibitHardTabs]
 allow_leading_tabs = 0
 
-[-ControlStructures::ProhibitCStyleForLoops]
-
 [-ValuesAndExpressions::ProhibitConstantPragma]
 
 [-ValuesAndExpressions::RequireNumberSeparators]
