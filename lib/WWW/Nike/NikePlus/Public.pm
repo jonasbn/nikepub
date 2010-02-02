@@ -45,8 +45,8 @@ sub _validate_parameters {
     my ( $self, $param ) = @_;
     
     my @parameters;    
-    while (my @set = each %{$param}) {
-        push @parameters, @set;
+    while (my @pair = each %{$param}) {
+        push @parameters, @pair;
     }
 
     validate( @parameters, {
