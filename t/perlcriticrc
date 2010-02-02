@@ -1,7 +1,7 @@
 
 # $Id: perlcriticrc,v 1.1 2008-06-11 08:08:00 jonasbn Exp $
 
-severity = 2
+severity = 1
 verbose = 8
 
 #------------------------------------------------------------------------------
@@ -23,3 +23,7 @@ allow_leading_tabs = 0
 [-ValuesAndExpressions::ProhibitConstantPragma]
 
 [-ValuesAndExpressions::RequireNumberSeparators]
+
+[InputOutput::RequireCheckedSyscalls]
+functions = :builtins
+exclude_functions = print
