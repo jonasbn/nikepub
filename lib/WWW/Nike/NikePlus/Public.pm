@@ -8,6 +8,7 @@ use WWW::Mechanize;
 use Carp qw(croak);
 use Params::Validate qw(:all); #validate
 use Data::Dumper;
+use English qw( -no_match_vars );
 
 use base qw(Class::Accessor);
 __PACKAGE__->mk_accessors(qw(base_url verbose mech userid));
@@ -75,7 +76,7 @@ sub retrieve {
     }
 
     $self->mech->get($url)
-        or croak "Unable to retrieve base URL: $@";
+        or croak "Unable to retrieve base URL: $EVAL_ERROR";
 
     my $content = $self->mech->content();
 
@@ -124,13 +125,15 @@ WWW::Nike::NikePlus::Public - retrieve data from Nike+ public interface
 
 =head1 DESCRIPTION
 
-=head1 SUBROUTINES/METHODS
+=head1 SUBROUTINES AND METHODS
 
 =head2 USAGE
 
 In order to make proper use of this class, you can either just use it as
 described in the L</SYNOPSIS> or you can subclass it and implement your own
 L</processor> method.
+
+=head1 DEPENDENCIES
 
 =head1 DIAGNOSTICS
 
@@ -186,6 +189,8 @@ L</processor> method.
 
 =back
 
-=head1 LICENSE AND COPYRIGHT
+=head1 COPYRIGHT
+
+=head1 LICENSE
 
 =cut

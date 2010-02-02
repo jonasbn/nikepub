@@ -36,6 +36,7 @@ my $build = Module::Build->new(
         'Carp'                      => '0',
         'Class::Accessor'           => '0',
         'Params::Validate'          => '0',
+        'English'                   => '0',
     },
     meta_merge => {
         resources => {
