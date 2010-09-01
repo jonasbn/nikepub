@@ -40,8 +40,14 @@ my $build = Module::Build->new(
     },
     meta_merge => {
         resources => {
-            homepage => 'http://logicLAB.jira.com/browse/NIKEPUB',
+            homepage => 'http://logiclab.jira.com/wiki/display/NIKEPUB/Home',
+            bugtracker =>
+                'http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-Nike-NikePlus-Public',
             repository => 'http://logicLAB.jira.com/svn/NIKEPUB',
+            ProjectChangelog =>
+                'http://logiclab.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel',
+            ProjectSite => 'http://logicLAB.jira.com/browse/NIKEPUB',
+            ProjectWiki => 'http://logiclab.jira.com/wiki/display/NIKEPUB/Home',
         }
     },
 
