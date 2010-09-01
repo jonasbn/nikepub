@@ -124,9 +124,14 @@ WWW::Nike::NikePlus::Public - retrieve data from Nike+ public interface
 
 =head1 VERSION
 
-0.01
+This documentation describes version 0.01
 
 =head1 DESCRIPTION
+
+Nikeplus is a service provided by Nike. It gives you online access to your workout
+data recorded using the Nike+ enabled devices (Apple iPod, iPhone etc.).
+
+
 
 =head1 SUBROUTINES AND METHODS
 
@@ -135,8 +140,6 @@ WWW::Nike::NikePlus::Public - retrieve data from Nike+ public interface
 In order to make proper use of this class, you can either just use it as
 described in the L</SYNOPSIS> or you can subclass it and implement your own
 L</processor> method.
-
-=head1 DEPENDENCIES
 
 =head1 DIAGNOSTICS
 
@@ -158,6 +161,13 @@ L</processor> method.
 
 =back
 
+Apart from software components, your need a Nikeplus public ID of a user, who
+have made their workout data publically available. The test suite currently
+uses the ID of the author. Please use this with descretion, since this is the
+ID I also use for development and analyzing my own running data. The data are
+not secret, but I do not want to have my account abused, so it will be closed
+due to overuse or similar, hence the mock in the test suite.
+
 =head1 INCOMPATIBILITIES
 
 =head1 BUGS AND LIMITATIONS
@@ -168,11 +178,7 @@ L</processor> method.
 
 =head1 TODO
 
-=over
-
-=item *
-
-=back
+Please see distribution TODO file.
 
 =head1 SEE ALSO
 
@@ -194,6 +200,15 @@ L</processor> method.
 
 =head1 COPYRIGHT
 
+Nike and Nikeplus/Nike+ are trademarks owned by Nike.
+
+iPod, iPod touch, iPhone and Apple are trademarks owned by Apple.
+
+Copyright 2009-2010 Jonas B. Nielsen (jonasbn), All Rights Reserved.
+
 =head1 LICENSE
+
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
