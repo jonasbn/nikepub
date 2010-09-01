@@ -34,7 +34,7 @@ sub new {
         $self->mech( WWW::Mechanize->new( agent => $agent ) );
     }
 
-    $self->base_url( $param->{base_url} );
+    $self->base_url( $param->{base_url} || $base_url );
 
     $self->verbose( $param->{verbose} );
     $self->userid( $param->{userid} );
