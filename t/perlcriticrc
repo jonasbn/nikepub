@@ -25,3 +25,5 @@ allow_leading_tabs = 0
 [InputOutput::RequireCheckedSyscalls]
 functions = :builtins
 exclude_functions = print
+
+[-Documentation::RequirePodLinksIncludeText]
