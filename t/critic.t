@@ -13,17 +13,22 @@ use warnings;
 use File::Spec;
 use Test::More;
 use English qw(-no_match_vars);
-use Test::Perl::Critic;
 use Env qw($TEST_CRITIC $TEST_VERBOSE);
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 if ( not $TEST_CRITIC ) {
     my $msg = 'Perl::Critic test. Set $ENV{TEST_CRITIC} to enable: 1-5 for severity, above 5 for resource file';
     plan( skip_all => $msg );
 
 } else {
-		
+
+    eval "use Test::Perl::Critic";
+
+    if ($@) {
+        plan skip_all => 'Test::Perl::Critic not installed';
+    }
+	
 	my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
 
 	if ($TEST_VERBOSE) {
