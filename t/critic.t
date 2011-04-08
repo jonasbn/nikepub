@@ -6,7 +6,7 @@
 
 # $Id$
 
-# $HeadURL$
+# $HeadURL: https://logiclab.jira.com/svn/OPENLAB/trunk/boilerplates/critic.t $
 
 use strict;
 use warnings;
@@ -14,20 +14,40 @@ use File::Spec;
 use Test::More;
 use English qw(-no_match_vars);
 use Test::Perl::Critic;
+use Env qw($TEST_CRITIC $TEST_VERBOSE);
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
-if ( not $ENV{TEST_CRITIC} ) {
-    my $msg = 'Author test.  Set $ENV{TEST_CRITIC} to a true value to run.';
+if ( not $TEST_CRITIC ) {
+    my $msg = 'Perl::Critic test. Set $ENV{TEST_CRITIC} to enable: 1-5 for severity, above 5 for resource file';
     plan( skip_all => $msg );
-}
 
-my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
+} else {
+		
+	my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
 
-Test::Perl::Critic->import(
-    -profile => $rcfile,
-    -severity => ($ENV{TEST_CRITIC} and $ENV{TEST_CRITIC} >= 0 and $ENV{TEST_CRITIC} <= 5) ? $ENV{TEST_CRITIC} : 5
-);
+	if ($TEST_VERBOSE) {
+		if ($TEST_CRITIC <= 5) {
+			print STDERR "\nRunning Perl::Critic test with severity: $TEST_CRITIC\n";
+		} else {
+			print STDERR "\nRunning Perl::Critic test with resourcefile: $rcfile\n";
+		}
+	}
+
+	# We use the severity communicated via the environment variable
+	if ($TEST_CRITIC >= 1 and $TEST_CRITIC <= 5) {
+    	Test::Perl::Critic->import(
+        	-profile  => $rcfile,
+        	-severity => $TEST_CRITIC,
+    	);
+
+		# We use the severity defined in the rcfile
+	} else {
+    	Test::Perl::Critic->import(
+        	-profile  => $rcfile,
+    	);
+	}
+} 
 
 all_critic_ok();
 
@@ -45,19 +65,41 @@ This test checks your code against Perl::Critic, which is a implementation of
 a subset of the Perl Best Practices.
 
 It's severity can be controlled using the severity parameter in the use
-statement. 1 being the lowest and 5 being the highests.
+statement. 5 being the lowest and 1 being the highests.
 
-Setting the severity lower, indicates level of strictness
+Setting the severity higher, indicates level of strictness
 
 Over the following range:
 
-gentle, stern, harsh, cruel, brutal
+=over
+
+=item gentle (5)
+
+=item stern (4)
+
+=item harsh (3)
+
+=item cruel (2)
+
+=item brutal (1)
+
+=back
 
 So gentle would only catch severity 5 issues.
 
 Since this tests tests all packages in your distribution, perlcritic
-commandline tool can be used in addition.
+command line tool can be used in addition.
 
 L<perlcritic>
+
+=head1 AUTHOR
+
+=over
+
+=item * logicLAB patches, jonasbn
+
+=item * original, Jeffrey Ryan Thalhammer 
+
+=back 
 
 =cut
