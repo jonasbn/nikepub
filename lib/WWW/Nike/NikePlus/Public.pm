@@ -7,7 +7,6 @@ use warnings;
 use WWW::Mechanize;
 use Carp qw(croak);
 use Params::Validate qw(:all);    #validate
-use Data::Dumper;
 use English qw( -no_match_vars );
 
 use base qw(Class::Accessor);
@@ -129,35 +128,83 @@ This documentation describes version 0.01
 =head1 DESCRIPTION
 
 Nikeplus is a service provided by Nike. It gives you online access to your workout
-data recorded using the Nike+ enabled devices (Apple iPod, iPhone etc.).
+data recorded using a Nike+ enabled devices (Apple iPod, iPhone etc.).
 
-=head1 SUBROUTINES AND METHODS
-
-=head2 new
-
-=head2 retrieve
-
-=head2 processor
-
-=head1 PRIVATE METHODS
-
-=head2 _validate_parameters
-
-=head2 USAGE
+The data are returned in XML format. All this module provides is the actual
+retrieval mechanism. Processing of the data is left up to you imagination.
 
 In order to make proper use of this class, you can either just use it as
 described in the L</SYNOPSIS> or you can subclass it and implement your own
 L</processor> method.
 
+=head1 SUBROUTINES AND METHODS
+
+=head2 new
+
+This is the constructor, it returns an object on which you can call the
+L</retrieve> method. It takes a reference to a hash as parameter. Please see
+the descriptions below on mandatory and optional parameters.
+
+=head3 Mandatory Parameters
+
+=over
+
+=item * userid, a Nikeplus public id
+
+=back
+
+=head3 Optional Parameters
+
+=over
+
+=item * verbose, a flag enabling verbosity
+
+=item * mech, a L<WWW::Mechanize> object if you do not want to use the one
+constructed internally. Please note that you should mimic a L<WWW::Mechanize>
+object since this class relies on the methods get and content.
+
+=item * base_url, the URL with the Nike service from where the data is retrieved.
+You can overwrite this value, but you might render the object useless. An
+interesting candidate for this parameter could be L<WWW::Mechanize::Cached>.
+
+=back 
+
+Accessors and mutators of the parameters mentioned above are also available.
+
+=head2 retrieve
+
+Takes no parameters, returns an XML string.
+
+=head2 processor
+
+This is sort of an abstract method. It should be overwritten, by subclassing the
+class and implmenting your own processor method.
+
+If you instantiate the object or later set the verbose attribute the built in
+accessor will output the retrieved data to STDERR.
+
+=head1 PRIVATE METHODS
+
+=head2 _validate_parameters
+
+This method is used internally to validate the parameters provided to the
+constructor (L</new>). Please see the constructor for more specific details.
+
 =head1 DIAGNOSTICS
 
 =over
 
-=item * 
+=item * The constructor dies, if the mandatory userid parameter is not provided.
+
+=item * L<WWW::Mechanize> might provide special errors, please refer
+to L<WWW::Mechanize>. This might however also relate to the availability to the Nike site providing the service acting as back-end for the module.
 
 =back
 
 =head1 CONFIGURATION AND ENVIRONMENT
+
+Apart from the listed dependencies and requirements listed in the following section. All which is needed is HTTP access to the Internet
+and access to the Nike site.
 
 =head1 DEPENDENCIES AND REQUIREMENTS
 
@@ -165,24 +212,43 @@ L</processor> method.
 
 =item * L<Carp>
 
-=item * L<WWW::Mechanize>
+=item * L<WWW::Mechanize>, by Andy Lester (PETDANCE)
+
+=item * L<Params::Validate>
+
+=item * L<Class::Accessor>
+
+=item * L<English>
 
 =back
 
 Apart from software components, your need a Nikeplus public ID of a user, who
 have made their workout data publically available. The test suite currently
-uses the ID of the author. Please use this with descretion, since this is the
-ID I also use for development and analyzing my own running data. The data are
-not secret, but I do not want to have my account abused, so it will be closed
-due to overuse or similar, hence the mock in the test suite.
+uses the ID of the author.
+
+Please use this with descretion, since this is the ID I also use for development
+and analyzing my own running data. The data are not secret, but I do not want to
+have my account abused, so it will be closed due to overuse or similar, hence
+the mock in the test suite.
 
 =head1 INCOMPATIBILITIES
 
+No known incompatibilities at this time.
+
 =head1 BUGS AND LIMITATIONS
+
+No known bugs at this time.
 
 =head1 BUG REPORTING
 
 =head1 TEST AND QUALITY
+
+=head2 INTEGRATION TEST
+
+If you want to call the actual Nikeplus API, you must enable the integration
+test, this is done using the environment variable.
+
+    TEST_INTEGRATION=1 ./Build test
 
 =head1 TODO
 
@@ -192,9 +258,15 @@ Please see distribution TODO file.
 
 =over
 
-=item * L<WWW::Mechanize>
+=item * L<http://nikerunning.nike.com/nikeos/p/nikeplus/en_EMEA/plus/#//dashboard/>, Nike site
 
-=item * L<WWW::Nike::NikePlus>
+=item * L<http://www.apple.com/ipod/nike/>, Apple site
+
+=item * L<http://en.wikipedia.org/wiki/Nike%2BiPod>, Wikipedia
+
+=item * L<WWW::Nike::NikePlus>, by Alex Lomas (ALEXLOMAS)
+
+=item * L<WWW::Mechanize::Cached>, by Iain Truskett and others
 
 =back
 
@@ -203,6 +275,14 @@ Please see distribution TODO file.
 =over
 
 =item * Jonas B. Nielsen (jonasbn) C<< <jonasbn@cpan.org> >>
+
+=back
+
+=head1 ACKNOWLEDGEMENTS
+
+=over
+
+=item * Andy Lester (PETDANCE), author of: L<WWW::Mechanize> a great utility
 
 =back
 
