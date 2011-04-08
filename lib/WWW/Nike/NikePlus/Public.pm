@@ -131,9 +131,17 @@ This documentation describes version 0.01
 Nikeplus is a service provided by Nike. It gives you online access to your workout
 data recorded using the Nike+ enabled devices (Apple iPod, iPhone etc.).
 
-
-
 =head1 SUBROUTINES AND METHODS
+
+=head2 new
+
+=head2 retrieve
+
+=head2 processor
+
+=head1 PRIVATE METHODS
+
+=head2 _validate_parameters
 
 =head2 USAGE
 
@@ -184,9 +192,9 @@ Please see distribution TODO file.
 
 =over
 
-=item * L<Carp>
-
 =item * L<WWW::Mechanize>
+
+=item * L<WWW::Nike::NikePlus>
 
 =back
 
@@ -194,7 +202,7 @@ Please see distribution TODO file.
 
 =over
 
-=item Jonas B. Nielsen (jonasbn) C<< <jonasbn@cpan.org> >>
+=item * Jonas B. Nielsen (jonasbn) C<< <jonasbn@cpan.org> >>
 
 =back
 
@@ -204,7 +212,7 @@ Nike and Nikeplus/Nike+ are trademarks owned by Nike.
 
 iPod, iPod touch, iPhone and Apple are trademarks owned by Apple.
 
-Copyright 2009-2010 Jonas B. Nielsen (jonasbn), All Rights Reserved.
+Copyright 2009-2011 Jonas B. Nielsen (jonasbn), All Rights Reserved.
 
 =head1 LICENSE
 
