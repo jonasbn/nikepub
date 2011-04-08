@@ -47,7 +47,7 @@
 ^MANIFEST\.SKIP
 
 # Avoid archives of this distribution
-\bWWW-Nike-NikePlus-Public-v[\d\.\_]+
+\bWWW-Nike-NikePlus-Public-[\d\.\_]+
 
 # Avoid project specific files
 \.komodoproject
