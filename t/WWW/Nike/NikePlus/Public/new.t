@@ -3,7 +3,6 @@
 use strict;
 use warnings;
 use WWW::Nike::NikePlus::Public;
-use Carp qw(croak);
 use Test::More tests => 4;
 
 my $nike;
