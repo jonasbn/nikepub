@@ -127,7 +127,7 @@ This documentation describes version 0.01
 
 =head1 DESCRIPTION
 
-Nikeplus is a service provided by Nike. It gives you online access to your workout
+NikePlus is a service provided by Nike. It gives you online access to your workout
 data recorded using a Nike+ enabled devices (Apple iPod, iPhone etc.).
 
 The data are returned in XML format. All this module provides is the actual
@@ -149,7 +149,7 @@ the descriptions below on mandatory and optional parameters.
 
 =over
 
-=item * userid, a Nikeplus public id
+=item * userid, a NikePlus public id
 
 =back
 
@@ -178,7 +178,7 @@ Takes no parameters, returns an XML string.
 =head2 processor
 
 This is sort of an abstract method. It should be overwritten, by subclassing the
-class and implmenting your own processor method.
+class and implementing your own processor method.
 
 If you instantiate the object or later set the verbose attribute the built in
 accessor will output the retrieved data to STDERR.
@@ -222,11 +222,11 @@ and access to the Nike site.
 
 =back
 
-Apart from software components, your need a Nikeplus public ID of a user, who
+Apart from software components, your need a NikePlus public ID of a user, who
 have made their workout data publically available. The test suite currently
 uses the ID of the author.
 
-Please use this with descretion, since this is the ID I also use for development
+Please use this with discretion, since this is the ID I also use for development
 and analyzing my own running data. The data are not secret, but I do not want to
 have my account abused, so it will be closed due to overuse or similar, hence
 the mock in the test suite.
@@ -245,7 +245,7 @@ No known bugs at this time.
 
 =head2 INTEGRATION TEST
 
-If you want to call the actual Nikeplus API, you must enable the integration
+If you want to call the actual NikePlus API, you must enable the integration
 test, this is done using the environment variable.
 
     TEST_INTEGRATION=1 ./Build test
