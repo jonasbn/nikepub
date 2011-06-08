@@ -1,4 +1,4 @@
-# Build.PL for Spilpriser
+# Build.PL for WWW::Nike::NikePlus::Public
 
 # $Id$
 
@@ -10,6 +10,7 @@ my $build = Module::Build->new(
     module_name          => 'WWW::Nike::NikePlus::Public',
     license              => 'perl',
     recursive_test_files => 1,
+    create_makefile_pl => 'traditional',
     create_readme        => 1,
     configure_requires   => {},
     requires => {
@@ -45,5 +46,3 @@ my $build = Module::Build->new(
 );
 
 $build->create_build_script();
-
-1;
