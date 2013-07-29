@@ -113,11 +113,11 @@ WWW::Nike::NikePlus::Public - retrieve data from Nike+ public interface
         userid  => 1755202461,
         verbose => 1,
     });
-    $xml = $nike->retrieve();
+    my $xml = $nike->retrieve();
         
 
     my $nike = WWW::Nike::NikePlus::Public->new({});
-    $xml = $nike->retrieve({
+    my $xml = $nike->retrieve({
         userid => 1755202461,
     });
 
