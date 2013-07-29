@@ -6,6 +6,11 @@ Project site changelog:
 
 http://logicLAB.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel
 
+HEAD
+
+- Corrected bad URL in the Changes file (this file)
+
+
 0.02 2013-07-29
 
 - Documented this dysfunctional APIs and warning about this module. Mentioned
