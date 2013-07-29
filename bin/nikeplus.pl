@@ -3,6 +3,9 @@
 use strict;
 use warnings;
 
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+
 use WWW::Nike::NikePlus::Public;
 
 my $nike = WWW::Nike::NikePlus::Public->new({
