@@ -16,7 +16,7 @@ use constant TRUE => 1;
 my $base_url
     = 'http://nikerunning.nike.com/nikeplus/v1/services/widget/get_public_run_list.jsp';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new {
     my ( $class, $param ) = @_;
