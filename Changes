@@ -1,0 +1,39 @@
+Changes file for WWW::Nike::NikePlus::Public
+
+$Id$
+
+Project site changelog:
+
+http://logicLAB.jira.com/browse/BJONASBN#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel
+
+0.02 2013-07-29
+
+- Documented this dysfunctional APIs and warning about this module. Mentioned
+  road map and planned version 1.00. [NIKEPUB-6]
+  
+  https://logiclab.jira.com/browse/NIKEPUB-6
+
+- Adjusted example in SYNOPSIS it was not copy-pastable [NIKEPUB-5]
+
+  https://logiclab.jira.com/browse/NIKEPUB-5
+
+- Added example script in bin/ [NIKEPUB-7]
+
+  https://logiclab.jira.com/browse/NIKEPUB-7
+
+- Fixed up Changes file as part of my Questhub quest adhering to the standard
+  described in: CPAN::Changes::Spec [NIKEPUB-8]
+
+  Quest: http://questhub.io/realm/perl/quest/51f0fd8e18ba7dcf4b000040
+  Spec: https://metacpan.org/module/CPAN::Changes::Spec
+  
+  https://logiclab.jira.com/browse/NIKEPUB-8
+
+- Added creation of traditional Makefile.PL to Build.PL [NIKEPUB-4]
+
+  https://logiclab.jira.com/browse/NIKEPUB-4
+  
+  
+0.01 2009-09-28
+
+- Initial release
