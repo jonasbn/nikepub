@@ -125,6 +125,14 @@ WWW::Nike::NikePlus::Public - retrieve data from Nike+ public interface
 
 This documentation describes version 0.01
 
+head1 WARNING
+
+This module is dysfuntional, the APIs from Nike are no longer available. The
+new APIs are being evaluated and a major rewrite and release of this distribution
+is planned.
+
+See: L<https://logiclab.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel>
+
 =head1 DESCRIPTION
 
 NikePlus is a service provided by Nike. It gives you online access to your workout
@@ -233,7 +241,8 @@ the mock in the test suite.
 
 =head1 INCOMPATIBILITIES
 
-No known incompatibilities at this time.
+The APIs used in the module are no longer working. Please see the warning
+at the beginning of this documentation and/or the TODO file.
 
 =head1 BUGS AND LIMITATIONS
 
@@ -252,7 +261,13 @@ test, this is done using the environment variable.
 
 =head1 TODO
 
-Please see distribution TODO file.
+Project road map:
+
+=over
+
+=item *  L<https://logiclab.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel>
+
+=back
 
 =head1 SEE ALSO
 
