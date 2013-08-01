@@ -16,7 +16,7 @@ use constant TRUE => 1;
 my $base_url
     = 'http://nikerunning.nike.com/nikeplus/v1/services/widget/get_public_run_list.jsp';
 
-our $VERSION = '0.01';
+our $VERSION = '0.03';
 
 sub new {
     my ( $class, $param ) = @_;
@@ -113,17 +113,25 @@ WWW::Nike::NikePlus::Public - retrieve data from Nike+ public interface
         userid  => 1755202461,
         verbose => 1,
     });
-    $xml = $nike->retrieve();
+    my $xml = $nike->retrieve();
         
 
     my $nike = WWW::Nike::NikePlus::Public->new({});
-    $xml = $nike->retrieve({
+    my $xml = $nike->retrieve({
         userid => 1755202461,
     });
 
 =head1 VERSION
 
 This documentation describes version 0.01
+
+head1 WARNING
+
+This module is dysfuntional, the APIs from Nike are no longer available. The
+new APIs are being evaluated and a major rewrite and release of this distribution
+is planned.
+
+See: L<https://logiclab.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel>
 
 =head1 DESCRIPTION
 
@@ -233,7 +241,8 @@ the mock in the test suite.
 
 =head1 INCOMPATIBILITIES
 
-No known incompatibilities at this time.
+The APIs used in the module are no longer working. Please see the warning
+at the beginning of this documentation and/or the TODO file.
 
 =head1 BUGS AND LIMITATIONS
 
@@ -252,7 +261,13 @@ test, this is done using the environment variable.
 
 =head1 TODO
 
-Please see distribution TODO file.
+Project road map:
+
+=over
+
+=item *  L<https://logiclab.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel>
+
+=back
 
 =head1 SEE ALSO
 
