@@ -1,0 +1,169 @@
+NAME
+    WWW::Nike::NikePlus::Public - retrieve data from Nike+ public interface
+
+SYNOPSIS
+        use WWW::Nike::NikePlus::Public;
+    
+        my $nike = WWW::Nike::NikePlus::Public->new({
+            userid  => 1755202461,
+            verbose => 1,
+        });
+        my $xml = $nike->retrieve();
+        
+
+        my $nike = WWW::Nike::NikePlus::Public->new({});
+        my $xml = $nike->retrieve({
+            userid => 1755202461,
+        });
+
+VERSION
+    This documentation describes version 0.01
+
+    head1 WARNING
+
+    This module is dysfuntional, the APIs from Nike are no longer available.
+    The new APIs are being evaluated and a major rewrite and release of this
+    distribution is planned.
+
+    See:
+    <https://logiclab.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.jira
+    .plugin.system.project%3Aroadmap-panel>
+
+DESCRIPTION
+    NikePlus is a service provided by Nike. It gives you online access to
+    your workout data recorded using a Nike+ enabled devices (Apple iPod,
+    iPhone etc.).
+
+    The data are returned in XML format. All this module provides is the
+    actual retrieval mechanism. Processing of the data is left up to you
+    imagination.
+
+    In order to make proper use of this class, you can either just use it as
+    described in the "SYNOPSIS" or you can subclass it and implement your
+    own "processor" method.
+
+SUBROUTINES AND METHODS
+  new
+    This is the constructor, it returns an object on which you can call the
+    "retrieve" method. It takes a reference to a hash as parameter. Please
+    see the descriptions below on mandatory and optional parameters.
+
+   Mandatory Parameters
+    *   userid, a NikePlus public id
+
+   Optional Parameters
+    *   verbose, a flag enabling verbosity
+
+    *   mech, a WWW::Mechanize object if you do not want to use the one
+        constructed internally. Please note that you should mimic a
+        WWW::Mechanize object since this class relies on the methods get and
+        content.
+
+    *   base_url, the URL with the Nike service from where the data is
+        retrieved. You can overwrite this value, but you might render the
+        object useless. An interesting candidate for this parameter could be
+        WWW::Mechanize::Cached.
+
+    Accessors and mutators of the parameters mentioned above are also
+    available.
+
+  retrieve
+    Takes no parameters, returns an XML string.
+
+  processor
+    This is sort of an abstract method. It should be overwritten, by
+    subclassing the class and implementing your own processor method.
+
+    If you instantiate the object or later set the verbose attribute the
+    built in accessor will output the retrieved data to STDERR.
+
+PRIVATE METHODS
+  _validate_parameters
+    This method is used internally to validate the parameters provided to
+    the constructor ("new"). Please see the constructor for more specific
+    details.
+
+DIAGNOSTICS
+    *   The constructor dies, if the mandatory userid parameter is not
+        provided.
+
+    *   WWW::Mechanize might provide special errors, please refer to
+        WWW::Mechanize. This might however also relate to the availability
+        to the Nike site providing the service acting as back-end for the
+        module.
+
+CONFIGURATION AND ENVIRONMENT
+    Apart from the listed dependencies and requirements listed in the
+    following section. All which is needed is HTTP access to the Internet
+    and access to the Nike site.
+
+DEPENDENCIES AND REQUIREMENTS
+    *   Carp
+
+    *   WWW::Mechanize, by Andy Lester (PETDANCE)
+
+    *   Params::Validate
+
+    *   Class::Accessor
+
+    *   English
+
+    Apart from software components, your need a NikePlus public ID of a
+    user, who have made their workout data publically available. The test
+    suite currently uses the ID of the author.
+
+    Please use this with discretion, since this is the ID I also use for
+    development and analyzing my own running data. The data are not secret,
+    but I do not want to have my account abused, so it will be closed due to
+    overuse or similar, hence the mock in the test suite.
+
+INCOMPATIBILITIES
+    The APIs used in the module are no longer working. Please see the
+    warning at the beginning of this documentation and/or the TODO file.
+
+BUGS AND LIMITATIONS
+    No known bugs at this time.
+
+BUG REPORTING
+TEST AND QUALITY
+  INTEGRATION TEST
+    If you want to call the actual NikePlus API, you must enable the
+    integration test, this is done using the environment variable.
+
+        TEST_INTEGRATION=1 ./Build test
+
+TODO
+    Project road map:
+
+    *   <https://logiclab.jira.com/browse/NIKEPUB#selectedTab=com.atlassian.
+        jira.plugin.system.project%3Aroadmap-panel>
+
+SEE ALSO
+    *   <http://nikerunning.nike.com/nikeos/p/nikeplus/en_EMEA/plus/#//dashb
+        oard/>, Nike site
+
+    *   <http://www.apple.com/ipod/nike/>, Apple site
+
+    *   <http://en.wikipedia.org/wiki/Nike%2BiPod>, Wikipedia
+
+    *   WWW::Nike::NikePlus, by Alex Lomas (ALEXLOMAS)
+
+    *   WWW::Mechanize::Cached, by Iain Truskett and others
+
+AUTHOR
+    *   Jonas B. Nielsen (jonasbn) "<jonasbn@cpan.org>"
+
+ACKNOWLEDGEMENTS
+    *   Andy Lester (PETDANCE), author of: WWW::Mechanize a great utility
+
+COPYRIGHT
+    Nike and Nikeplus/Nike+ are trademarks owned by Nike.
+
+    iPod, iPod touch, iPhone and Apple are trademarks owned by Apple.
+
+    Copyright 2009-2011 Jonas B. Nielsen (jonasbn), All Rights Reserved.
+
+LICENSE
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
